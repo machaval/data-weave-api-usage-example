@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>data-weave-api-usage-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <mule.weave.version>2.4.0-SNAPSHOT</mule.weave.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mule.weave</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${mule.weave.version}</version>
+        </dependency>
+
+        <!--Uncomment any module for each format that wants to be supported-->
+        <dependency>
+            <groupId>org.mule.weave</groupId>
+            <artifactId>java-module</artifactId>
+            <version>${mule.weave.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!--core-modules has XML, JSON, CSV, Multipart, Properties, UrlEncoded, Binary, TextPlain -->
+<!--        <dependency>-->
+<!--            <groupId>org.mule.weave</groupId>-->
+<!--            <artifactId>core-modules</artifactId>-->
+<!--            <version>${mule.weave.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.mule.weave</groupId>-->
+<!--            <artifactId>yaml-module</artifactId>-->
+<!--            <version>${mule.weave.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.mule.weave</groupId>-->
+<!--            <artifactId>excel-module</artifactId>-->
+<!--            <version>${mule.weave.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.mule.weave</groupId>-->
+<!--            <artifactId>ndjson-module</artifactId>-->
+<!--            <version>${mule.weave.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.mule.weave</groupId>-->
+<!--            <artifactId>avro-module</artifactId>-->
+<!--            <version>${mule.weave.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.mule.weave</groupId>-->
+<!--            <artifactId>excel-module</artifactId>-->
+<!--            <version>${mule.weave.version}</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>mule-releases</id>
+            <url>https://repository-master.mulesoft.org/nexus/content/repositories/releases</url>
+        </repository>
+
+        <repository>
+            <id>mule-snapshots</id>
+            <url>https://repository-master.mulesoft.org/nexus/content/repositories/snapshots</url>
+        </repository>
+
+    </repositories>
+
+</project>
