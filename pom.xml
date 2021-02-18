@@ -36,17 +36,17 @@
 
 
         <!--core-modules has XML, JSON, CSV, Multipart, Properties, UrlEncoded, Binary, TextPlain -->
-<!--        <dependency>-->
-<!--            <groupId>org.mule.weave</groupId>-->
-<!--            <artifactId>core-modules</artifactId>-->
-<!--            <version>${mule.weave.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.mule.weave</groupId>
+            <artifactId>core-modules</artifactId>
+            <version>${mule.weave.version}</version>
+        </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.mule.weave</groupId>-->
-<!--            <artifactId>yaml-module</artifactId>-->
-<!--            <version>${mule.weave.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.mule.weave</groupId>
+            <artifactId>yaml-module</artifactId>
+            <version>${mule.weave.version}</version>
+        </dependency>
 
 <!--        <dependency>-->
 <!--            <groupId>org.mule.weave</groupId>-->
