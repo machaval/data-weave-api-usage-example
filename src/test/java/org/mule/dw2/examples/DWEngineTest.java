@@ -169,4 +169,56 @@ public class DWEngineTest {
             fail(e.getMessage());
         }
     }
+
+    @Test
+    public void yamlToYaml() {
+
+        String script = "%dw 2.0\n" +
+                "input payload application/yaml\n" + //Declares the input and what kind of input is in this case JSON
+                "output application/yaml\n" + //Declares the output
+                "---\n" +
+                "{" + //Mapping an Object to an Object doing field mapping
+                "  name: payload.userName," +
+                "  email: payload.emailAddress," +
+                "  lastName: payload.userLastName" +
+                "} ";
+
+        //Compile method is being overload with multiple utility functions
+        // In your case I think the one passing the script as a string is the best
+        //This is the result of compiling the expression. Though it says compile the output is an intepreted execution
+        //It can be cached and reused by multiple threads concurrently
+        final DataWeaveScript compiledExpression = dataWeaveScriptingEngine.compile(script);
+
+
+        //In here we need to bind all the inputs that we want to be available at runtime
+        final ScriptingBindings scriptingBindings = new ScriptingBindings();
+        String userYaml =
+                "userName: \"Mariano\"\n" +
+                "emailAddress: \"mariano.achaval@mulesoft.com\"\n" +
+                "userLastName: \"Achaval\"\n";
+
+        // In here it can be a String, a Byte[] an InputStream
+        //Then as we have declared in the script that data is represented in yaml format
+        //DW will handle it the proper way and make it the source of the parser
+        scriptingBindings.addBinding("payload", userYaml);
+        try {
+            final DataWeaveResult result = compiledExpression.write(scriptingBindings);
+            final Object content = result.getContent();
+            //String based formats the always output InputStream with the proper enconding
+            //This input stream is either an InMemory ByteArray kind or something that is backed up into disk
+            //To avoid running out of memory. The threshold is currently 1.5MB
+            assertThat(content, CoreMatchers.instanceOf(InputStream.class));
+            final String yamlResult = Source.fromInputStream((InputStream) content, result.getCharset().name()).mkString();
+
+            assertThat(yamlResult.trim(), is("%YAML 1.2\n" +
+                    "---\n" +
+                    "name: Mariano\n" +
+                    "email: mariano.achaval@mulesoft.com\n" +
+                    "lastName: Achaval".trim()));
+        } catch (Exception e) {
+            //Catch any exception it may occurred during write. It will have the line number and the user message of what was wrong
+            e.printStackTrace();
+            fail(e.getMessage());
+        }
+    }
 }
