@@ -221,4 +221,23 @@ public class DWEngineTest {
             fail(e.getMessage());
         }
     }
+
+
+    @Test
+    public void streamCSV(){
+        final InputStream script = getClass().getClassLoader().getResourceAsStream("mappings/CSVTransformation.dwl");
+        final String scriptContent = Source.fromInputStream(script, "UTF-8").mkString();
+        final DataWeaveScript csvTransformation = dataWeaveScriptingEngine.compile(scriptContent, "CSVTransformation");
+        for (int j = 0; j < 100; j++) {
+            final ScriptingBindings scriptingBindings = new ScriptingBindings();
+            final InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("csv_big/Users.csv");
+            scriptingBindings.addBinding("payload", resourceAsStream);
+            final long start = System.currentTimeMillis();
+            final DataWeaveResult write = csvTransformation.write(scriptingBindings);
+            final Object writeContent = write.getContent();
+            final long end = System.currentTimeMillis();
+            System.out.println("Taken = " + (end - start));
+        }
+
+    }
 }
