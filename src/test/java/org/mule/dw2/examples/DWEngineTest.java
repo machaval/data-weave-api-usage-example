@@ -235,6 +235,7 @@ public class DWEngineTest {
             final long start = System.currentTimeMillis();
             final DataWeaveResult write = csvTransformation.write(scriptingBindings);
             final Object writeContent = write.getContent();
+            System.out.println("Result Kind = " + writeContent.getClass());
             final long end = System.currentTimeMillis();
             System.out.println("Taken = " + (end - start));
         }
