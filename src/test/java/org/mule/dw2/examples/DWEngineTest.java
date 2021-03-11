@@ -6,6 +6,7 @@ import org.mule.dw2.examples.pojos.Account;
 import org.mule.dw2.examples.pojos.User;
 import org.mule.weave.v2.io.FileHelper;
 import org.mule.weave.v2.io.IOHelper;
+import org.mule.weave.v2.model.ServiceManager;
 import org.mule.weave.v2.runtime.DataWeaveResult;
 import org.mule.weave.v2.runtime.DataWeaveScript;
 import org.mule.weave.v2.runtime.DataWeaveScriptingEngine;
